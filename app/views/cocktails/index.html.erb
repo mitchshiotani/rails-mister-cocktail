@@ -1,12 +1,62 @@
-<h1 class='main-title'>Cocktail List</h1>
-<div class="container">
-  <div class="row mb-4">
-    <% @cocktails.each do |cocktail| %>
-    <div class="col-4"><%= link_to cocktail.name, cocktail_path(cocktail) %></div>
-    <% end %>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <a class="navbar-brand" href="#">
+    <%= cl_image_tag 'https://res.cloudinary.com/dnkw5ylus/image/upload/v1565335622/white-cup-and-yellow-beer_ni8btr.png' %>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Messages</a>
+      </li>
+      <li class="nav-item dropdown">
+        <%= cl_image_tag 'https://res.cloudinary.com/dnkw5ylus/image/upload/v1565335622/white-cup-and-yellow-beer_ni8btr.png', class: "navbar-brand" %>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+        </div>
+      </li>
+    </ul>
   </div>
-  <div>
-    <%= link_to "make new cocktail", new_cocktail_path %> <br>
-    <%= link_to "back to all cocktails", root_path %>
+</div>
+
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path 'https://res.cloudinary.com/dnkw5ylus/image/upload/v1565334411/mak-Knf6MLtgolM-unsplash_iznyle.jpg', height: 300, width: 400, crop: :fill %>');">
+  <div class="container">
+    <h1>Mitch's <strong>creative cocktails</strong></h1>
+    <p>Drink responsibly</p>
+    <%= link_to "Add Cocktail", new_cocktail_path, class: "btn btn-success" %>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <h1 class='main-title'>Cocktail List</h1>
+  <div class="container">
+    <div class="row my-4 py-4">
+      <% @cocktails.each do |cocktail| %>
+      <div class="col-4 my-3">
+        <%= link_to cocktail_path(cocktail) do %>
+          <div class="card" style="width: 18rem;">
+            <% if cocktail.photo.present? %>
+              <%= cl_image_tag cocktail.photo, height: 300, width: 400, crop: :fill, class: "card-img-top" %>
+            <% else %>
+              <%= cl_image_tag 'https://res.cloudinary.com/dnkw5ylus/image/upload/v1565332028/eygakekcbndfmk5paqyg.png', height: 300, width: 400, crop: :fill, class: "card-img-top" %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= cocktail.name %></h5>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+      <% end %>
+    </div>
   </div>
 </div>
